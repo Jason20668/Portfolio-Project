@@ -3,30 +3,74 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>My Portfolio</title>
+
     <link rel="icon" href="imgs/Fav_Book.png">
+
+    <!-- StPageFlip CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/page-flip/dist/css/page-flip.css">
+
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row" id="start">
-            <div class="floating">
-                <image src="imgs/Portfolio_Book.png" id="book-image">
+
+    <div class="floating">
+
+        <div class="flipbook">
+
+            <div class="page cover"></div>
+
+            <div class="page">
+                Contents:
             </div>
+
+            <div class="page">
+                About the Author: 
+            </div>
+
+            <div class="page">
+                Chapter 1 - Featured Works:
+            </div>
+
+            <div class="page">
+                Chapter 2 - Sophomore Year:
+            </div>
+
+            <div class="page">
+                Chapter 3 - Junior Year:
+            </div>
+
+            <div class="page">
+                Chapter 4 - Senior Year:
+            </div>
+
+            <div class="page">
+                Chapter 5 - Reflection:
+            </div>
+
+            <div class="page">
+                Chapter 6 - Future Plans:
+            </div>
+
+            <div class="page cover back-cover"></div>
+
         </div>
+
     </div>
+
+    <!-- StPageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+    <!-- Your JS -->
+    <script src="script.js"></script>
+
 </body>
 
-
 </html>
-
-<script type="text/javascript">
-    $("#flipbook").turn({
-        width: 400,
-        height: 300,
-        autoCenter: true
-    });
-</script>
