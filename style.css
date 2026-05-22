@@ -19,7 +19,8 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3vh;
+  gap: 2vh;
+  padding: 1.5rem;
   animation: float 3.5s ease-in-out infinite;
 }
 
@@ -28,9 +29,24 @@ html, body {
   50% { transform: translateY(-18px); }
 }
 
+.book-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 1.2rem;
+  width: min(88vw, 760px);
+}
+
+@media (max-width: 820px) {
+  .book-gallery {
+    grid-template-columns: 1fr;
+    width: min(92vw, 420px);
+  }
+}
+
 .book-cover {
-  width: min(32vw, 320px);
-  height: min(44vw, 440px);
+  width: 100%;
+  max-width: 280px;
+  height: min(40vw, 380px);
   background: #c0392b;
   border-radius: 6px 18px 18px 6px;
   cursor: pointer;
@@ -40,26 +56,74 @@ html, body {
     0 12px 60px rgba(0,0,0,0.75),
     inset 0 0 0 2px rgba(255,255,255,0.08),
     inset 10px 0 20px rgba(0,0,0,0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.book-cover[data-book="book1"] {
+  background: linear-gradient(180deg, #c0392b 0%, #962d22 100%);
+  box-shadow:
+    -8px 0 0 #8b1a10,
+    0 12px 60px rgba(0,0,0,0.75),
+    inset 0 0 0 2px rgba(255,255,255,0.08),
+    inset 10px 0 20px rgba(0,0,0,0.25);
+}
+
+.book-cover[data-book="book2"] {
+  background: linear-gradient(180deg, #21618c 0%, #154360 100%);
+  box-shadow:
+    -8px 0 0 #17334e,
+    0 12px 60px rgba(0,0,0,0.75),
+    inset 0 0 0 2px rgba(255,255,255,0.08),
+    inset 10px 0 20px rgba(0,0,0,0.25);
+}
+
+.book-cover[data-book="book3"] {
+  background: linear-gradient(180deg, #8e44ad 0%, #5b2c6f 100%);
+  box-shadow:
+    -8px 0 0 #5f2e60,
+    0 12px 60px rgba(0,0,0,0.75),
+    inset 0 0 0 2px rgba(255,255,255,0.08),
+    inset 10px 0 20px rgba(0,0,0,0.25);
+}
+
+.book-cover[data-book="book4"] {
+  background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+  box-shadow:
+    -8px 0 0 #176f3f,
+    0 12px 60px rgba(0,0,0,0.75),
+    inset 0 0 0 2px rgba(255,255,255,0.08),
+    inset 10px 0 20px rgba(0,0,0,0.25);
+}
+
 .book-cover:hover {
   transform: scale(1.04) rotate(-1deg);
   box-shadow:
-    -8px 0 0 #8b1a10,
+    -8px 0 0 rgba(0,0,0,0.35),
     0 20px 70px rgba(0,0,0,0.9),
     inset 0 0 0 2px rgba(255,255,255,0.12),
     inset 10px 0 20px rgba(0,0,0,0.3);
 }
 
-.cover-inner { text-align: center; color: #f5e6c8; padding: 24px; }
-.cover-diamond { font-size: clamp(18px, 2vw, 28px); margin-bottom: 18px; color: #d4a96a; }
-.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; }
-.cover-subtitle { font-size: clamp(9px, 0.85vw, 13px); letter-spacing: 4px; margin-bottom: 16px; }
-.cover-rule { width: 70px; height: 1px; background: rgba(245,230,200,0.4); margin: 0 auto; }
+.book-cover[data-book="book1"] .cover-diamond { color: #f8c471; }
+.book-cover[data-book="book2"] .cover-diamond { color: #7ed6ff; }
+.book-cover[data-book="book3"] .cover-diamond { color: #f5b041; }
+.book-cover[data-book="book4"] .cover-diamond { color: #f9e79f; }
+
+.book-cover[data-book="book1"] .cover-rule,
+.book-cover[data-book="book2"] .cover-rule,
+.book-cover[data-book="book3"] .cover-rule,
+.book-cover[data-book="book4"] .cover-rule {
+  background: rgba(255,255,255,0.5);
+}
+
+.cover-inner { text-align: center; color: #f5e6c8; padding: 20px; }
+.cover-diamond { font-size: clamp(16px, 1.8vw, 24px); margin-bottom: 14px; color: #d4a96a; }
+.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+.cover-subtitle { font-size: clamp(8px, 0.8vw, 12px); letter-spacing: 4px; margin-bottom: 12px; }
+.cover-rule { width: 64px; height: 1px; background: rgba(245,230,200,0.4); margin: 0 auto; }
 
 .click-to-open {
   color: #a08060;
@@ -74,6 +138,34 @@ html, body {
   display: flex;
   flex-direction: column;
   background: #1a0f08;
+}
+
+.viewer-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.75rem 0;
+}
+
+.book-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #f5e6c8;
+}
+
+#book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 700;
+}
+
+#book-subtitle {
+  font-size: clamp(11px, 0.9vw, 14px);
+  color: #a08060;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
 
 /* ===== BOOK CONTAINER ===== */
