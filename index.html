@@ -24,22 +24,15 @@
 
   <!-- BOOK VIEWER -->
   <div id="book-viewer" class="hidden">
-
-    <!-- Close button -->
-    <button id="close-btn" title="Close book">✕</button>
-
-    <div class="book-scene">
-      <div id="book">
-
-        <!-- turn.js pages: each div = one page, pairs = spreads -->
-        <!-- Pages go: 1=spread1-left, 2=spread1-right, 3=spread2-left, 4=spread2-right ... -->
+    <div class="book-container">
+      <div id="book-spread">
 
         <!-- SPREAD 1: Table of Contents -->
-        <div class="page page-left">
-          <div class="page-inner toc-left">
+        <div class="spread" data-spread="1">
+          <div class="page page-left toc-left">
             <div class="nav-label">NAVIGATION</div>
             <div class="nav-box">
-              <p><strong>Navigate:</strong> Drag a page corner or use arrow keys to flip.</p>
+              <p><strong>Navigate:</strong> Use the arrows below to flip through chapters.</p>
               <p>Click any chapter in the contents to jump directly to it.</p>
               <p>Each chapter card links out to that project.</p>
             </div>
@@ -48,26 +41,24 @@
               <div class="portfolio-title">4 Years of Work</div>
             </div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner toc-right">
+          <div class="page page-right toc-right">
             <div class="toc-nav-label">NAVIGATION</div>
             <h2 class="toc-heading">Contents</h2>
             <ol class="toc-list">
-              <li data-target="3"><span class="toc-num">01</span><span class="toc-chapter">About Me</span><span class="toc-dots"></span><span class="toc-page">p. 2</span></li>
-              <li data-target="5"><span class="toc-num">02</span><span class="toc-chapter">Featured</span><span class="toc-dots"></span><span class="toc-page">p. 3</span></li>
-              <li data-target="7"><span class="toc-num">03</span><span class="toc-chapter">Sophomore</span><span class="toc-dots"></span><span class="toc-page">p. 4</span></li>
-              <li data-target="9"><span class="toc-num">04</span><span class="toc-chapter">Junior</span><span class="toc-dots"></span><span class="toc-page">p. 5</span></li>
-              <li data-target="11"><span class="toc-num">05</span><span class="toc-chapter">Senior</span><span class="toc-dots"></span><span class="toc-page">p. 6</span></li>
-              <li data-target="13"><span class="toc-num">06</span><span class="toc-chapter">Reflection</span><span class="toc-dots"></span><span class="toc-page">p. 7</span></li>
-              <li data-target="15"><span class="toc-num">07</span><span class="toc-chapter">Future Plans</span><span class="toc-dots"></span><span class="toc-page">p. 8</span></li>
+              <li data-target="2"><span class="toc-num">01</span><span class="toc-chapter">About Me</span><span class="toc-dots"></span><span class="toc-page">p. 2</span></li>
+              <li data-target="3"><span class="toc-num">02</span><span class="toc-chapter">Featured</span><span class="toc-dots"></span><span class="toc-page">p. 3</span></li>
+              <li data-target="4"><span class="toc-num">03</span><span class="toc-chapter">Sophomore</span><span class="toc-dots"></span><span class="toc-page">p. 4</span></li>
+              <li data-target="5"><span class="toc-num">04</span><span class="toc-chapter">Junior</span><span class="toc-dots"></span><span class="toc-page">p. 5</span></li>
+              <li data-target="6"><span class="toc-num">05</span><span class="toc-chapter">Senior</span><span class="toc-dots"></span><span class="toc-page">p. 6</span></li>
+              <li data-target="7"><span class="toc-num">06</span><span class="toc-chapter">Reflection</span><span class="toc-dots"></span><span class="toc-page">p. 7</span></li>
+              <li data-target="8"><span class="toc-num">07</span><span class="toc-chapter">Future Plans</span><span class="toc-dots"></span><span class="toc-page">p. 8</span></li>
             </ol>
           </div>
         </div>
 
         <!-- SPREAD 2: About the Author -->
-        <div class="page page-left">
-          <div class="page-inner about-left">
+        <div class="spread hidden" data-spread="2">
+          <div class="page page-left about-left">
             <div class="chapter-label">INTRODUCTION</div>
             <h2 class="chapter-title">About<br>the Author</h2>
             <p class="chapter-quote">"A designer and developer who spent four years crafting digital experiences — from first experiments to polished productions."</p>
@@ -79,25 +70,27 @@
               <span class="tag">Branding</span>
             </div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner about-right">
+          <div class="page page-right about-right">
             <div class="photo-placeholder square">Your photo here</div>
             <p class="body-text">A short personal blurb goes here — your background, interests, what drives your design thinking, and what you hope visitors take away from this portfolio.</p>
           </div>
         </div>
 
         <!-- SPREAD 3: Featured Work -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="3">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 01</div>
             <h2 class="chapter-title">Featured<br>Work</h2>
-            <div class="project-card large"><div class="project-img">Project A</div><div class="project-info"><strong>Project A</strong><br><span>Website design</span></div></div>
-            <div class="project-card large"><div class="project-img">Project B</div><div class="project-info"><strong>Project B</strong><br><span>Website design</span></div></div>
+            <div class="project-card large">
+              <div class="project-img">Project A</div>
+              <div class="project-info"><strong>Project A</strong><br><span>Website design</span></div>
+            </div>
+            <div class="project-card large">
+              <div class="project-img">Project B</div>
+              <div class="project-info"><strong>Project B</strong><br><span>Website design</span></div>
+            </div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner chapter-right">
+          <div class="page page-right chapter-right">
             <div class="project-grid">
               <div class="project-card small"><div class="project-img">Project C</div><div class="project-info"><strong>Project C</strong><br><span>Website design</span></div></div>
               <div class="project-card small"><div class="project-img">Project D</div><div class="project-info"><strong>Project D</strong><br><span>Website design</span></div></div>
@@ -108,16 +101,14 @@
         </div>
 
         <!-- SPREAD 4: Sophomore Year -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="4">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 02</div>
             <h2 class="chapter-title">Sophomore<br>Year</h2>
             <div class="project-card large"><div class="project-img">Soph. 1</div><div class="project-info"><strong>Soph. 1</strong><br><span>Website design</span></div></div>
             <div class="project-card large"><div class="project-img">Soph. 2</div><div class="project-info"><strong>Soph. 2</strong><br><span>Website design</span></div></div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner chapter-right">
+          <div class="page page-right chapter-right">
             <div class="project-grid">
               <div class="project-card small"><div class="project-img">Soph. 3</div><div class="project-info"><strong>Soph. 3</strong><br><span>Website design</span></div></div>
               <div class="project-card small"><div class="project-img">Soph. 4</div><div class="project-info"><strong>Soph. 4</strong><br><span>Website design</span></div></div>
@@ -128,16 +119,14 @@
         </div>
 
         <!-- SPREAD 5: Junior Year -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="5">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 03</div>
             <h2 class="chapter-title">Junior<br>Year</h2>
             <div class="project-card large"><div class="project-img">Jr. 1</div><div class="project-info"><strong>Jr. 1</strong><br><span>Website design</span></div></div>
             <div class="project-card large"><div class="project-img">Jr. 2</div><div class="project-info"><strong>Jr. 2</strong><br><span>Website design</span></div></div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner chapter-right">
+          <div class="page page-right chapter-right">
             <div class="project-grid">
               <div class="project-card small"><div class="project-img">Jr. 3</div><div class="project-info"><strong>Jr. 3</strong><br><span>Website design</span></div></div>
               <div class="project-card small"><div class="project-img">Jr. 4</div><div class="project-info"><strong>Jr. 4</strong><br><span>Website design</span></div></div>
@@ -148,16 +137,14 @@
         </div>
 
         <!-- SPREAD 6: Senior Year -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="6">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 04</div>
             <h2 class="chapter-title">Senior<br>Year</h2>
             <div class="project-card large"><div class="project-img">Sr. 1</div><div class="project-info"><strong>Sr. 1</strong><br><span>Website design</span></div></div>
             <div class="project-card large"><div class="project-img">Sr. 2</div><div class="project-info"><strong>Sr. 2</strong><br><span>Website design</span></div></div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner chapter-right">
+          <div class="page page-right chapter-right">
             <div class="project-grid">
               <div class="project-card small"><div class="project-img">Sr. 3</div><div class="project-info"><strong>Sr. 3</strong><br><span>Website design</span></div></div>
               <div class="project-card small"><div class="project-img">Sr. 4</div><div class="project-info"><strong>Sr. 4</strong><br><span>Website design</span></div></div>
@@ -168,17 +155,15 @@
         </div>
 
         <!-- SPREAD 7: Reflection -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="7">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 05</div>
             <h2 class="chapter-title">Reflection</h2>
             <p class="chapter-quote">"Four years ago I opened a blank canvas. Here I reflect on what I've learned, the mistakes that shaped me, and the moments that changed how I see design."</p>
             <hr class="divider">
             <p class="hint-text">Key milestones on the right →</p>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner prose-right">
+          <div class="page page-right prose-right">
             <div class="photo-placeholder wide">Your photo here</div>
             <div class="blockquote-box">
               <p>Personal reflection text goes here — what growth you've experienced and what this journey has meant to you.</p>
@@ -187,8 +172,8 @@
         </div>
 
         <!-- SPREAD 8: Future Plans -->
-        <div class="page page-left">
-          <div class="page-inner chapter-left">
+        <div class="spread hidden" data-spread="8">
+          <div class="page page-left chapter-left">
             <div class="chapter-label">CHAPTER 06</div>
             <h2 class="chapter-title">Future<br>Plans</h2>
             <p class="chapter-quote">"What comes next — the directions I'm headed, the skills I'm building, and the kind of work I want to make in the years ahead."</p>
@@ -200,9 +185,7 @@
               <span class="tag">Studio Work</span>
             </div>
           </div>
-        </div>
-        <div class="page page-right">
-          <div class="page-inner prose-right">
+          <div class="page page-right prose-right">
             <div class="photo-placeholder wide">Your photo here</div>
             <div class="blockquote-box">
               <p>Your future plans text — goals, aspirations, where you see your career heading and what excites you about what's ahead.</p>
@@ -210,8 +193,8 @@
           </div>
         </div>
 
-      </div><!-- #book -->
-    </div><!-- .book-scene -->
+      </div><!-- end book-spread -->
+    </div><!-- end book-container -->
 
     <!-- NAVIGATION BAR -->
     <div class="nav-bar">
@@ -222,11 +205,8 @@
       </div>
       <button class="nav-btn" id="next-btn">Next →</button>
     </div>
+  </div>
 
-  </div><!-- #book-viewer -->
-
-  <script src="jquery.min.js"></script>
-  <script src="turn.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
