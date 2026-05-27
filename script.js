@@ -13,6 +13,10 @@ const bookSubtitle = document.getElementById('book-subtitle');
 const spreadLabel = document.getElementById('spread-label');
 const dotsContainer = document.getElementById('dots');
 const bookCoverButtons = document.querySelectorAll('.book-cover');
+const carouselPrevBtn = document.querySelector('.carousel-prev');
+const carouselNextBtn = document.querySelector('.carousel-next');
+const bookTrack = document.querySelector('.book-track');
+let carouselIndex = 0;
 
 function createTagHtml(tags) {
   return tags.map(tag => `<span class="tag">${tag}</span>`).join('');
@@ -36,6 +40,205 @@ function createProjectCards(cards) {
         <div class="project-info"><strong>${card.title}</strong><br><span>${card.description}</span></div>
       </div>
     `).join('');
+}
+
+function createFeaturedBook(bookNum) {
+  const title = `Featured Website ${bookNum}`;
+  const subtitle = 'Case Study';
+  const chapters = [
+    { target: 2, num: '01', chapter: 'Overview', page: 'p. 2' },
+    { target: 3, num: '02', chapter: 'Design System', page: 'p. 3' },
+    { target: 4, num: '03', chapter: 'Interactions', page: 'p. 4' },
+    { target: 5, num: '04', chapter: 'Components', page: 'p. 5' },
+    { target: 6, num: '05', chapter: 'Launch', page: 'p. 6' },
+    { target: 7, num: '06', chapter: 'Metrics', page: 'p. 7' },
+    { target: 8, num: '07', chapter: 'Takeaways', page: 'p. 8' }
+  ];
+
+  return {
+    title,
+    subtitle,
+    tocItems: chapters,
+    spreads: [
+      {
+        leftClass: 'toc-left',
+        rightClass: 'toc-right',
+        leftHtml: `
+          <div class="nav-label">NAVIGATION</div>
+          <div class="nav-box">
+            <p><strong>Explore:</strong> A case study of Featured Website ${bookNum}.</p>
+            <p>Use the contents list to jump directly to each chapter.</p>
+            <p>Each spread presents a different phase of the website process.</p>
+          </div>
+          <div class="portfolio-label-box">
+            <div class="sub-label">CASE STUDY</div>
+            <div class="portfolio-title">Featured Website ${bookNum}</div>
+          </div>
+        `,
+        rightHtml: `
+          <div class="toc-nav-label">NAVIGATION</div>
+          <h2 class="toc-heading">Contents</h2>
+          <ol class="toc-list">
+            ${createTocItems(chapters)}
+          </ol>
+        `
+      },
+      {
+        leftClass: 'about-left',
+        rightClass: 'about-right',
+        leftHtml: `
+          <div class="chapter-label">INTRODUCTION</div>
+          <h2 class="chapter-title">Featured<br>Website ${bookNum}</h2>
+          <p class="chapter-quote">"A focused case study exploring the design, interaction, and launch of this website."</p>
+          <hr class="divider">
+          <div class="tag-row">${createTagHtml(['Website', 'UX', 'Design', 'Launch'])}</div>
+        `,
+        rightHtml: `
+          <div class="photo-placeholder square">Site overview</div>
+          <p class="body-text">This book walks through the design decisions, user experience thinking, and results behind Featured Website ${bookNum}.</p>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 01</div>
+          <h2 class="chapter-title">Overview</h2>
+          ${createProjectCards([
+            { size: 'large', img: 'Brand', title: 'Brand Vision', description: 'What the website stands for' },
+            { size: 'large', img: 'Goals', title: 'Project Goals', description: 'Key objectives' }
+          ])}
+        `,
+        rightHtml: `
+          <div class="project-grid">
+            ${createProjectCards([
+              { size: 'small', img: 'Users', title: 'Users', description: 'Audience focus' },
+              { size: 'small', img: 'Needs', title: 'Needs', description: 'Primary problems' },
+              { size: 'small', img: 'Flow', title: 'Flow', description: 'Experience map' },
+              { size: 'small', img: 'Scope', title: 'Scope', description: 'Project boundaries' }
+            ])}
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 02</div>
+          <h2 class="chapter-title">Design<br>System</h2>
+          ${createProjectCards([
+            { size: 'large', img: 'Palette', title: 'Color Palette', description: 'Visual tone' },
+            { size: 'large', img: 'Type', title: 'Typography', description: 'Brand voice' }
+          ])}
+        `,
+        rightHtml: `
+          <div class="project-grid">
+            ${createProjectCards([
+              { size: 'small', img: 'Cards', title: 'Cards', description: 'Component design' },
+              { size: 'small', img: 'Buttons', title: 'Buttons', description: 'Interaction states' },
+              { size: 'small', img: 'Forms', title: 'Forms', description: 'User inputs' },
+              { size: 'small', img: 'Grid', title: 'Layout', description: 'Page structure' }
+            ])}
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 03</div>
+          <h2 class="chapter-title">Interactions</h2>
+          ${createProjectCards([
+            { size: 'large', img: 'Motion', title: 'Motion', description: 'Interface animation' },
+            { size: 'large', img: 'Hover', title: 'Microinteractions', description: 'Feedback design' }
+          ])}
+        `,
+        rightHtml: `
+          <div class="project-grid">
+            ${createProjectCards([
+              { size: 'small', img: 'Nav', title: 'Navigation', description: 'User pathways' },
+              { size: 'small', img: 'Search', title: 'Search', description: 'Findability' },
+              { size: 'small', img: 'Filters', title: 'Filters', description: 'Content control' },
+              { size: 'small', img: 'Media', title: 'Media', description: 'Visual storytelling' }
+            ])}
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 04</div>
+          <h2 class="chapter-title">Components</h2>
+          ${createProjectCards([
+            { size: 'large', img: 'Cards', title: 'Component Library', description: 'Reusable elements' },
+            { size: 'large', img: 'Icons', title: 'Icon Set', description: 'Visual language' }
+          ])}
+        `,
+        rightHtml: `
+          <div class="project-grid">
+            ${createProjectCards([
+              { size: 'small', img: 'Forms', title: 'Form UI', description: 'Input design' },
+              { size: 'small', img: 'Headers', title: 'Headers', description: 'Content hierarchy' },
+              { size: 'small', img: 'Footers', title: 'Footers', description: 'Site structure' },
+              { size: 'small', img: 'Alerts', title: 'Alerts', description: 'Status messaging' }
+            ])}
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'prose-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 05</div>
+          <h2 class="chapter-title">Launch</h2>
+          <p class="chapter-quote">"This website launches with clarity, strong visuals, and a seamless experience for first-time visitors."</p>
+          <hr class="divider">
+          <p class="hint-text">Key launch details are on the right →</p>
+        `,
+        rightHtml: `
+          <div class="photo-placeholder wide">Launch metrics</div>
+          <div class="blockquote-box">
+            <p>Launch highlights, rollout plans, and the early performance outcomes of Featured Website ${bookNum}.</p>
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'prose-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 06</div>
+          <h2 class="chapter-title">Metrics</h2>
+          <p class="chapter-quote">"Tracking early engagement and performance helps guide the next phase of updates."</p>
+          <hr class="divider">
+          <div class="tag-row">${createTagHtml(['Engagement', 'Conversion', 'Speed', 'Growth'])}</div>
+        `,
+        rightHtml: `
+          <div class="photo-placeholder wide">Analytics review</div>
+          <div class="blockquote-box">
+            <p>Measurement and insight details show how Featured Website ${bookNum} performs and where the next improvements will land.</p>
+          </div>
+        `
+      },
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'prose-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER 07</div>
+          <h2 class="chapter-title">Takeaways</h2>
+          <p class="chapter-quote">"Each website project teaches something new about design, users, and the path to launch."</p>
+          <hr class="divider">
+          <div class="tag-row">${createTagHtml(['Learnings', 'Iterations', 'Growth', 'Next'])}</div>
+        `,
+        rightHtml: `
+          <div class="photo-placeholder wide">Project learnings</div>
+          <div class="blockquote-box">
+            <p>Final reflections on what worked, what evolved, and the direction for future website updates.</p>
+          </div>
+        `
+      }
+    ]
+  };
 }
 
 const books = {
@@ -223,8 +426,8 @@ const books = {
     ]
   },
   book2: {
-    title: 'Design Journal',
-    subtitle: 'A Creative Book',
+    title: 'Featured Website 1',
+    subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Journal Intro', page: 'p. 2' },
       { target: 3, num: '02', chapter: 'Launch Story', page: 'p. 3' },
@@ -406,8 +609,8 @@ const books = {
     ]
   },
   book3: {
-    title: 'Studio Stories',
-    subtitle: 'Work and Process',
+    title: 'Featured Website 2',
+    subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Studio Intro', page: 'p. 2' },
       { target: 3, num: '02', chapter: 'Collaborations', page: 'p. 3' },
@@ -589,8 +792,8 @@ const books = {
     ]
   },
   book4: {
-    title: 'Brand Compendium',
-    subtitle: 'Identity & Systems',
+    title: 'Featured Website 3',
+    subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Brand Research', page: 'p. 2' },
       { target: 3, num: '02', chapter: 'Identity Work', page: 'p. 3' },
@@ -770,7 +973,10 @@ const books = {
         `
       }
     ]
-  }
+  },
+  book5: createFeaturedBook(4),
+  book6: createFeaturedBook(5),
+  book7: createFeaturedBook(6)
 };
 
 function renderSpread(spread, index) {
@@ -826,6 +1032,28 @@ bookCoverButtons.forEach(card => {
   });
 });
 
+function updateCarousel() {
+  if (!bookTrack) return;
+  carouselIndex = Math.max(0, Math.min(1, carouselIndex));
+  bookTrack.style.transform = `translateX(-${carouselIndex * 50}%)`;
+  if (carouselPrevBtn) carouselPrevBtn.disabled = carouselIndex === 0;
+  if (carouselNextBtn) carouselNextBtn.disabled = carouselIndex === 1;
+}
+
+if (carouselPrevBtn) {
+  carouselPrevBtn.addEventListener('click', () => {
+    carouselIndex = Math.max(0, carouselIndex - 1);
+    updateCarousel();
+  });
+}
+
+if (carouselNextBtn) {
+  carouselNextBtn.addEventListener('click', () => {
+    carouselIndex = Math.min(1, carouselIndex + 1);
+    updateCarousel();
+  });
+}
+
 backBtn.addEventListener('click', () => {
   bookViewer.classList.add('hidden');
   coverScreen.classList.remove('hidden');
@@ -856,6 +1084,7 @@ function updateUI() {
 function init() {
   buildDots();
   updateUI();
+  updateCarousel();
 }
 
 // Keyboard navigation
