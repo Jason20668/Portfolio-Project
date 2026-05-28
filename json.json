@@ -1,0 +1,79 @@
+{
+	"websites": [
+		{
+			"name": "Example Site 1",
+			"image": "imgs/example1.png",
+			"link": "https://example1.com"
+		},
+		{
+			"name": "Example Site 2",
+			"image": "imgs/example2.png",
+			"link": "https://example2.com"
+		},
+		{
+			"name": "Example Site 3",
+			"image": "imgs/example3.png",
+			"link": "https://example3.com"
+		},
+		{
+			"name": "Example Site 4",
+			"image": "imgs/example4.png",
+			"link": "https://example4.com"
+		},
+		{
+			"name": "Example Site 5",
+			"image": "imgs/example5.png",
+			"link": "https://example5.com"
+		},
+		{
+			"name": "Example Site 6",
+			"image": "imgs/example6.png",
+			"link": "https://example6.com"
+		},
+		{
+			"name": "Example Site 7",
+			"image": "imgs/example7.png",
+			"link": "https://example7.com"
+		},
+		{
+			"name": "Example Site 8",
+			"image": "imgs/example8.png",
+			"link": "https://example8.com"
+		},
+		{
+			"name": "Example Site 9",
+			"image": "imgs/example9.png",
+			"link": "https://example9.com"
+		},
+		{
+			"name": "Example Site 10",
+			"image": "imgs/example10.png",
+			"link": "https://example10.com"
+		},
+		{
+			"name": "Example Site 11",
+			"image": "imgs/example11.png",
+			"link": "https://example11.com"
+		},
+		{
+			"name": "Example Site 12",
+			"image": "imgs/example12.png",
+			"link": "https://example12.com"
+		},
+		{
+			"name": "Example Site 13",
+			"image": "imgs/example13.png",
+			"link": "https://example13.com"
+		},
+		{
+			"name": "Example Site 14",
+			"image": "imgs/example14.png",
+			"link": "https://example14.com"
+		},
+		{
+			"name": "Example Site 15",
+			"image": "imgs/example15.png",
+			"link": "https://example15.com"
+		}
+	]
+}

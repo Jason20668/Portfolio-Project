@@ -12,78 +12,74 @@
   <!-- COVER SCREEN -->
   <div id="cover-screen">
     <div class="book-gallery">
-      <div class="top-row">
-        <div class="book-cover top-book" data-book="book1">
+      <p class="gallery-cta">CLICK A BOOK TO OPEN</p>
+      <div class="books-row">
+
+        <div class="book-cover" data-book="book1">
           <div class="cover-inner">
             <div class="cover-diamond">✦</div>
-            <h1 class="cover-title">My Portdolio</h1>
+            <h1 class="cover-title">My Portfolio</h1>
             <p class="cover-subtitle">Jason Bach</p>
             <div class="cover-rule"></div>
           </div>
         </div>
-      </div>
 
-      <div class="gallery-cta click-to-open">CLICK A BOOK TO OPEN</div>
-
-      <div class="book-carousel">
-        <button class="carousel-btn carousel-prev" type="button" aria-label="Previous books">←</button>
-        <div class="book-track">
-          <div class="carousel-page">
-            <div class="book-cover" data-book="book2">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 1</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
-            <div class="book-cover" data-book="book3">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 2</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
-            <div class="book-cover" data-book="book4">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 3</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-page">
-            <div class="book-cover" data-book="book5">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 4</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
-            <div class="book-cover" data-book="book6">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 5</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
-            <div class="book-cover" data-book="book7">
-              <div class="cover-inner">
-                <div class="cover-diamond">✦</div>
-                <h1 class="cover-title">Featured Website 6</h1>
-                <p class="cover-subtitle">Jason Bach</p>
-                <div class="cover-rule"></div>
-              </div>
-            </div>
+        <div class="book-cover" data-book="book2">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 1</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
           </div>
         </div>
-        <button class="carousel-btn carousel-next" type="button" aria-label="Next books">→</button>
-      </div>
-    </div>
+
+        <div class="book-cover" data-book="book3">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 2</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
+          </div>
+        </div>
+
+        <div class="book-cover" data-book="book4">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 3</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
+          </div>
+        </div>
+
+        <div class="book-cover" data-book="book5">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 4</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
+          </div>
+        </div>
+
+        <div class="book-cover" data-book="book6">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 5</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
+          </div>
+        </div>
+
+        <div class="book-cover" data-book="book7">
+          <div class="cover-inner">
+            <div class="cover-diamond">✦</div>
+            <h1 class="cover-title">Featured Website 6</h1>
+            <p class="cover-subtitle">Jason Bach</p>
+            <div class="cover-rule"></div>
+          </div>
+        </div>
+
+      </div><!-- end books-row -->
+    </div><!-- end book-gallery -->
   </div>
 
   <!-- BOOK VIEWER -->
@@ -96,10 +92,9 @@
       </div>
     </div>
     <div class="book-container">
-      <div id="book-spread"></div><!-- dynamic book content -->
-    </div><!-- end book-container -->
+      <div id="book-spread"></div>
+    </div>
 
-    <!-- NAVIGATION BAR -->
     <div class="nav-bar">
       <button class="nav-btn" id="prev-btn">← Previous</button>
       <div class="spread-indicator">
@@ -109,8 +104,6 @@
       <button class="nav-btn" id="next-btn">Next →</button>
     </div>
   </div>
-
-  
 
   <script src="script.js"></script>
 </body>
