@@ -179,6 +179,48 @@
 			"image": "imgs/WordSalad.png",
 			"link": "https://jason20668.github.io/Word-Salad/",
 			"year": "Junior"
+		},
+		{
+			"name": "Bangkok Project",
+			"image": "imgs/Bangkok.png",
+			"link": "https://jason20668.github.io/Bangkok-Website/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Coffee Shop Project",
+			"image": "imgs/CoffeeShop.png",
+			"link": "https://jason20668.github.io/Coffee-Shop-Project/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Farmers Market Project",
+			"image": "imgs/FarmersMarket.png",
+			"link": "https://jason20668.github.io/Farmers-Market-Project/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Game Freak Project",
+			"image": "imgs/GameFreak.png",
+			"link": "https://jason20668.github.io/Brand-Designer-Project/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Non-Profit Project",
+			"image": "imgs/NonProfit.png",
+			"link": "https://jason20668.github.io/Non-Profit-Project/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Oda Tribute Project",
+			"image": "imgs/OdaTribute.png",
+			"link": "https://jason20668.github.io/Oda-Tribute-Project/",
+			"year": "Sophomore"
+		},
+		{
+			"name": "Spiffy Distinct Graph Project",
+			"image": "imgs/SpiffyDistinctGraph.png",
+			"link": "https://jason20668.github.io/Spiffy-Distinct-Graph-Project/",
+			"year": "Sophomore"
 		}
 	]
 }
