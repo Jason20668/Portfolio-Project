@@ -1,79 +1,184 @@
 {
 	"websites": [
 		{
-			"name": "Example Site 1",
-			"image": "imgs/example1.png",
-			"link": "https://example1.com"
+			"name": "AJAX Project",
+			"image": "imgs/AJAX.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 2",
-			"image": "imgs/example2.png",
-			"link": "https://example2.com"
+			"name": "ASYNC Project",
+			"image": "imgs/ASYNC.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 3",
-			"image": "imgs/example3.png",
-			"link": "https://example3.com"
+			"name": "Albums Project",
+			"image": "imgs/Albums.png",
+			"link": "",
+			"year": "Sophomore"
 		},
 		{
-			"name": "Example Site 4",
-			"image": "imgs/example4.png",
-			"link": "https://example4.com"
+			"name": "College Recruitment Project",
+			"image": "imgs/CollegeRecruitment.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 5",
-			"image": "imgs/example5.png",
-			"link": "https://example5.com"
+			"name": "Famous Person Project",
+			"image": "imgs/Famous.png",
+			"link": "",
+			"year": "Junior"
 		},
 		{
-			"name": "Example Site 6",
-			"image": "imgs/example6.png",
-			"link": "https://example6.com"
+			"name": "Hangman Project",
+			"image": "imgs/Hangman.png",
+			"link": "",
+			"year": "Junior"
 		},
 		{
-			"name": "Example Site 7",
-			"image": "imgs/example7.png",
-			"link": "https://example7.com"
+			"name": "JS Arrays Project",
+			"image": "imgs/JSArraysDemo.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 8",
-			"image": "imgs/example8.png",
-			"link": "https://example8.com"
+			"name": "JS Event Project",
+			"image": "imgs/JSEventDemo.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 9",
-			"image": "imgs/example9.png",
-			"link": "https://example9.com"
+			"name": "JS Functions Project",
+			"image": "imgs/JSFunctionsDemo.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 10",
-			"image": "imgs/example10.png",
-			"link": "https://example10.com"
+			"name": "Lunch Menu Project",
+			"image": "imgs/LunchMenu.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 11",
-			"image": "imgs/example11.png",
-			"link": "https://example11.com"
+			"name": "Magic 8Ball Project",
+			"image": "imgs/Magic8Ball.png",
+			"link": "",
+			"year": "Junior"
 		},
 		{
-			"name": "Example Site 12",
-			"image": "imgs/example12.png",
-			"link": "https://example12.com"
+			"name": "MovieGallery Project",
+			"image": "imgs/MovieGallery.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 13",
-			"image": "imgs/example13.png",
-			"link": "https://example13.com"
+			"name": "NJIT Project Project",
+			"image": "imgs/NJIT Project.png",
+			"link": "",
+			"year": "Senior"
 		},
 		{
-			"name": "Example Site 14",
-			"image": "imgs/example14.png",
-			"link": "https://example14.com"
+			"name": "Name Creator Project",
+			"image": "imgs/NameCreator.png",
+			"link": "",
+			"year": "Junior"
 		},
 		{
-			"name": "Example Site 15",
-			"image": "imgs/example15.png",
-			"link": "https://example15.com"
+			"name": "Postcard Project",
+			"image": "imgs/Postcard.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "President Project",
+			"image": "imgs/President.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "Pumpkins Project",
+			"image": "imgs/Pumpkins.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "RPS Project",
+			"image": "imgs/RPS.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "SpookyGhost Project",
+			"image": "imgs/SpookyGhost.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "StateFacts Project",
+			"image": "imgs/StateFacts.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "StreetFighter Project",
+			"image": "imgs/StreetFighter.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "Summertainment Project",
+			"image": "imgs/Summertainment.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "Testimonial Project",
+			"image": "imgs/Testimonial.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "To Do Project",
+			"image": "imgs/ToDo.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "Vue Mastery Project",
+			"image": "imgs/VueMastery.png",
+			"link": "",
+			"year": "Senior"
+		},
+		{
+			"name": "Website Gallery Project",
+			"image": "imgs/WebsiteGallery.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "Wildcard Project",
+			"image": "imgs/Wildcard.png",
+			"link": "",
+			"year": "Junior"
+		},
+		{
+			"name": "WinterWonderland Project",
+			"image": "imgs/WinterWonderland.png",
+			"link": "",
+			"year": "Senior"
+		},
+		{
+			"name": "Woplinger Project",
+			"image": "imgs/Woplinger.png",
+			"link": "",
+			"year": "Senior"
+		},
+		{
+			"name": "WordSalad Project",
+			"image": "imgs/WordSalad.png",
+			"link": "",
+			"year": "Junior"
 		}
 	]
 }
