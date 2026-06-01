@@ -34,12 +34,114 @@ function createTocItems(items) {
 }
 
 function createProjectCards(cards) {
-  return cards.map(card => `
+  return cards.map(card => {
+    const imageHtml = card.image ? `<img src="${card.image}" alt="${card.title}">` : card.img || '';
+    const websiteButton = card.link ? `
+        <a class="project-button" href="${card.link}" target="_blank" rel="noopener noreferrer">
+          Go to Website!
+        </a>
+      ` : '';
+    const descriptionHtml = card.description ? `<span>${card.description}</span>` : '';
+
+    return `
       <div class="project-card ${card.size}">
-        <div class="project-img">${card.img}</div>
-        <div class="project-info"><strong>${card.title}</strong><br><span>${card.description}</span></div>
+        <div class="project-img">${imageHtml}</div>
+        <div class="project-info">
+          <strong>${card.title}</strong>
+          ${descriptionHtml}
+          ${websiteButton}
+        </div>
       </div>
-    `).join('');
+    `;
+  }).join('');
+}
+
+function createProjectModalHtml(site) {
+  if (!site) {
+    return `<div class="project-detail-card"><div class="project-card large"><div class="project-info"><strong>Project unavailable</strong><span>No preview data found.</span></div></div></div>`;
+  }
+  return `
+    <div class="project-detail-card">
+      ${createProjectCards([
+        {
+          size: 'large',
+          image: site.image,
+          title: site.name,
+          link: site.link
+        }
+      ])}
+    </div>
+  `;
+}
+
+function createYearGallerySpreads(year, chapterNum, chapterTitle, websites) {
+  const yearItems = websites.filter(item => item.year.toLowerCase() === year.toLowerCase());
+  if (yearItems.length === 0) {
+    return [
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER ${chapterNum}</div>
+          <h2 class="chapter-title">${chapterTitle}</h2>
+          <p class="body-text">No projects found for ${chapterTitle} yet.</p>
+        `,
+        rightHtml: '<div class="project-grid"></div>'
+      }
+    ];
+  }
+
+  const spreads = [];
+  if (year.toLowerCase() === 'sophomore') {
+    return [
+      {
+        leftClass: 'chapter-left',
+        rightClass: 'chapter-right',
+        leftHtml: `
+          <div class="chapter-label">CHAPTER ${chapterNum}</div>
+          <h2 class="chapter-title">${chapterTitle}</h2>
+          <p class="chapter-quote">No sophomore projects survived the archive — the page is intentionally ripped as a fun reveal.</p>
+          <hr class="divider">
+          <p class="hint-text">This section is a ripped page in the story of your portfolio.</p>
+        `,
+        rightHtml: `
+          <div class="ripped-page">
+            <div class="ripped-page-text">Sophomore<br>Year<br>Ripped</div>
+          </div>
+        `
+      }
+    ];
+  }
+  for (let i = 0; i < yearItems.length; i += 6) {
+    const group = yearItems.slice(i, i + 6);
+    const leftCards = group.slice(0, 2).map(item => ({
+      size: 'large',
+      image: item.image,
+      title: item.name,
+      link: item.link
+    }));
+    const rightCards = group.slice(2).map(item => ({
+      size: 'small',
+      image: item.image,
+      title: item.name,
+      link: item.link
+    }));
+    spreads.push({
+      leftClass: 'chapter-left',
+      rightClass: 'chapter-right',
+      leftHtml: `
+        <div class="chapter-label">CHAPTER ${chapterNum}${i > 0 ? ' — CONTINUED' : ''}</div>
+        <h2 class="chapter-title">${chapterTitle}</h2>
+        ${createProjectCards(leftCards)}
+      `,
+      rightHtml: `
+        <div class="project-grid">
+          ${createProjectCards(rightCards)}
+        </div>
+      `
+    });
+  }
+  return spreads;
 }
 
 function createFeaturedBook(bookNum) {
@@ -72,12 +174,11 @@ const books = {
     subtitle: 'My Portfolio',
     tocItems: [
       { target: 2, num: '01', chapter: 'About Me', page: 'p. 2' },
-      { target: 3, num: '02', chapter: 'Featured Work', page: 'p. 3' },
-      { target: 4, num: '03', chapter: 'Sophomore Year', page: 'p. 4' },
-      { target: 5, num: '04', chapter: 'Junior Year', page: 'p. 5' },
-      { target: 6, num: '05', chapter: 'Senior Year', page: 'p. 6' },
-      { target: 7, num: '06', chapter: 'Reflection', page: 'p. 7' },
-      { target: 8, num: '07', chapter: 'Future Plans', page: 'p. 8' }
+      { target: 3, num: '02', chapter: 'Sophomore Year', page: 'p. 3' },
+      { target: 4, num: '03', chapter: 'Junior Year', page: 'p. 4' },
+      { target: 5, num: '04', chapter: 'Senior Year', page: 'p. 5' },
+      { target: 6, num: '05', chapter: 'Reflection', page: 'p. 6' },
+      { target: 7, num: '06', chapter: 'Future Plans', page: 'p. 7' }
     ],
     spreads: [
       {
@@ -101,12 +202,11 @@ const books = {
           <ol class="toc-list">
             ${createTocItems([
               { target: 2, num: '01', chapter: 'About Me', page: 'p. 2' },
-              { target: 3, num: '02', chapter: 'Featured Work', page: 'p. 3' },
-              { target: 4, num: '03', chapter: 'Sophomore Year', page: 'p. 4' },
-              { target: 5, num: '04', chapter: 'Junior Year', page: 'p. 5' },
-              { target: 6, num: '05', chapter: 'Senior Year', page: 'p. 6' },
-              { target: 7, num: '06', chapter: 'Reflection', page: 'p. 7' },
-              { target: 8, num: '07', chapter: 'Future Plans', page: 'p. 8' }
+              { target: 3, num: '02', chapter: 'Sophomore Year', page: 'p. 3' },
+              { target: 4, num: '03', chapter: 'Junior Year', page: 'p. 4' },
+              { target: 5, num: '04', chapter: 'Senior Year', page: 'p. 5' },
+              { target: 6, num: '05', chapter: 'Reflection', page: 'p. 6' },
+              { target: 7, num: '06', chapter: 'Future Plans', page: 'p. 7' }
             ])}
           </ol>
         `
@@ -119,35 +219,13 @@ const books = {
           <h2 class="chapter-title">About<br>the Author</h2>
           <p class="chapter-quote">"A designer and developer who spent four years crafting digital experiences — from first experiments to polished productions."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Design', 'Development', 'UX', 'Branding'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder square">Your photo here</div>
           <p class="body-text">A short personal blurb goes here — your background, interests, what drives your design thinking, and what you hope visitors take away from this portfolio.</p>
         `
       },
-      {
-        leftClass: 'chapter-left',
-        rightClass: 'chapter-right',
-        leftHtml: `
-          <div class="chapter-label">CHAPTER 01</div>
-          <h2 class="chapter-title">Featured<br>Work</h2>
-          ${createProjectCards([
-            { size: 'large', img: 'Project A', title: 'Project A', description: 'Website design' },
-            { size: 'large', img: 'Project B', title: 'Project B', description: 'Website design' }
-          ])}
-        `,
-        rightHtml: `
-          <div class="project-grid">
-            ${createProjectCards([
-              { size: 'small', img: 'Project C', title: 'Project C', description: 'Website design' },
-              { size: 'small', img: 'Project D', title: 'Project D', description: 'Website design' },
-              { size: 'small', img: 'Project E', title: 'Project E', description: 'Website design' },
-              { size: 'small', img: 'Project F', title: 'Project F', description: 'Website design' }
-            ])}
-          </div>
-        `
-      },
+      /* Featured Work spread removed */
       {
         leftClass: 'chapter-left',
         rightClass: 'chapter-right',
@@ -239,7 +317,6 @@ const books = {
           <h2 class="chapter-title">Future<br>Plans</h2>
           <p class="chapter-quote">"What comes next — the directions I'm headed, the skills I'm building, and the kind of work I want to make in the years ahead."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Graduate School', 'UX Research', 'Freelance', 'Studio Work'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder wide">Your photo here</div>
@@ -248,10 +325,27 @@ const books = {
           </div>
         `
       }
-    ]
+    ],
+    // Minimal customPages for About only (safe, incremental)
+    customPages: {
+      about: {
+        leftHtml: `
+          <div class="chapter-label">INTRODUCTION</div>
+          <h2 class="chapter-title">About<br>the Author</h2>
+          <p class="chapter-quote">"A designer and developer who spent four years crafting digital experiences — from first experiments to polished productions."</p>
+          <hr class="divider">
+        `,
+        rightHtml: `
+          <div class="photo-placeholder square" style="padding:0;">
+            <img src="imgs/Jason1.jpeg" alt="Jason Bach" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+        `
+      }
+    }
   },
   book2: {
     title: 'Featured Website 1',
+    projectName: 'AJAX Project',
     subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Journal Intro', page: 'p. 2' },
@@ -302,7 +396,6 @@ const books = {
           <h2 class="chapter-title">Inside<br>the Journal</h2>
           <p class="chapter-quote">"A journal of interface experiments, editorial systems, and the ideas that shaped each page."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Strategy', 'Writing', 'UX', 'Systems'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder square">Journal cover</div>
@@ -422,7 +515,6 @@ const books = {
           <h2 class="chapter-title">Next<br>Chapter</h2>
           <p class="chapter-quote">"More stories are on the horizon. This book is a step toward bigger systems and bolder visual ideas."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Publishing', 'Research', 'Motion', 'Content'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder wide">Future work</div>
@@ -432,9 +524,27 @@ const books = {
         `
       }
     ]
+    ,
+    // Minimal customPages for About only (safe, incremental)
+    customPages: {
+      about: {
+        leftHtml: `
+          <div class="chapter-label">INTRODUCTION</div>
+          <h2 class="chapter-title">About<br>the Author</h2>
+          <p class="chapter-quote">"A designer and developer who spent four years crafting digital experiences — from first experiments to polished productions."</p>
+          <hr class="divider">
+        `,
+        rightHtml: `
+          <div class="photo-placeholder square" style="padding:0;">
+            <img src="imgs/Jason1.jpeg" alt="Jason Bach" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+        `
+      }
+    }
   },
   book3: {
     title: 'Featured Website 2',
+    projectName: 'ASYNC Project',
     subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Studio Intro', page: 'p. 2' },
@@ -485,7 +595,6 @@ const books = {
           <h2 class="chapter-title">Inside<br>the Studio</h2>
           <p class="chapter-quote">"Inside the studio, design is a conversation — between strategy, craft, and the people who shape it."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Studio', 'Process', 'Research', 'Collaboration'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder square">Studio view</div>
@@ -605,7 +714,6 @@ const books = {
           <h2 class="chapter-title">Forward</h2>
           <p class="chapter-quote">"The studio keeps growing toward new collaborations, systems, and creative experiments."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Partnership', 'Research', 'Systems', 'Growth'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder wide">Future studio</div>
@@ -617,7 +725,7 @@ const books = {
     ]
   },
   book4: {
-    title: 'Featured Website 3',
+    title: 'RPS Project',
     subtitle: 'Case Study',
     tocItems: [
       { target: 2, num: '01', chapter: 'Brand Research', page: 'p. 2' },
@@ -668,7 +776,6 @@ const books = {
           <h2 class="chapter-title">Brand<br>Compendium</h2>
           <p class="chapter-quote">"A curated collection of identity work, systems thinking, and the design language that binds them together."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Branding', 'Systems', 'Identity', 'Typography'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder square">Identity guide</div>
@@ -788,7 +895,6 @@ const books = {
           <h2 class="chapter-title">Outlook</h2>
           <p class="chapter-quote">"Future brand work will expand this system into new channels and more expressive moments."</p>
           <hr class="divider">
-          <div class="tag-row">${createTagHtml(['Identity', 'Systems', 'Expansion', 'Consistency'])}</div>
         `,
         rightHtml: `
           <div class="photo-placeholder wide">Brand future</div>
@@ -799,126 +905,169 @@ const books = {
       }
     ]
   },
-  book5: createFeaturedBook(4),
-  book6: createFeaturedBook(5),
-  book7: createFeaturedBook(6)
+  book5: {
+    ...createFeaturedBook(4),
+    title: 'Street Fighter Project'
+  },
+  book6: {
+    ...createFeaturedBook(5),
+    title: 'NJIT Project'
+  },
+  book7: {
+    ...createFeaturedBook(6),
+    title: 'Woplinger Project'
+  }
 };
 
-function renderSpread(spread, index) {
-  return `
-    <div class="spread${index === 1 ? '' : ' hidden'}" data-spread="${index}">
-      <div class="page page-left ${spread.leftClass}">
-        ${spread.leftHtml}
-      </div>
-      <div class="page page-right ${spread.rightClass}">
-        ${spread.rightHtml}
-      </div>
-    </div>
-  `;
-}
-
-function renderBook(bookId) {
-  const book = books[bookId] || books.book1;
-  bookTitle.textContent = book.title;
-  bookSubtitle.textContent = book.subtitle;
-  bookSpread.innerHTML = book.spreads.map((spread, index) => renderSpread(spread, index + 1)).join('');
-  totalSpreads = book.spreads.length;
-  buildDots();
-  setupTocLinks();
-  coverScreen.classList.add('hidden');
-  bookViewer.classList.remove('hidden');
-  current = 1;
-  updateUI();
-}
-
-function setupTocLinks() {
-  document.querySelectorAll('.toc-list li').forEach(li => {
-    li.onclick = () => {
-      const target = parseInt(li.getAttribute('data-target'));
-      if (target) goTo(target);
+const app = Vue.createApp({
+  data() {
+    return {
+      viewerOpen: false,
+      currentBook: 'book1',
+      current: 1,
+      books,
+      websites: []
     };
-  });
-}
+  },
+  computed: {
+    bookList() {
+      return Object.entries(this.books).map(([id, book]) => ({ id, title: book.title, subtitle: book.subtitle }));
+    },
+    topBooks() {
+      return this.bookList.slice(0, 3);
+    },
+    bottomBooks() {
+      return this.bookList.slice(3);
+    },
+    book1Spreads() {
+      return this.books.book1.spreads.reduce((spreads, spread, index) => {
+        if (index === 2) {
+          spreads.push(...createYearGallerySpreads('Sophomore', '02', 'Sophomore Year', this.websites));
+        } else if (index === 3) {
+          spreads.push(...createYearGallerySpreads('Junior', '03', 'Junior Year', this.websites));
+        } else if (index === 4) {
+          spreads.push(...createYearGallerySpreads('Senior', '04', 'Senior Year', this.websites));
+        } else {
+          spreads.push(spread);
+        }
+        return spreads;
+      }, []);
+    },
+    currentBookData() {
+      if (this.currentBook === 'book1') {
+        const spreads = this.book1Spreads;
+        const cp = (this.books.book1 && this.books.book1.customPages) ? this.books.book1.customPages : null;
+        if (cp && cp.about) {
+          for (let i = 0; i < spreads.length; i++) {
+            const left = (spreads[i].leftHtml || '').toLowerCase();
+            const right = (spreads[i].rightHtml || '').toLowerCase();
+            if (left.includes('about the author') || left.includes('about me') || left.includes('introduction')) {
+              spreads[i].leftHtml = cp.about.leftHtml || spreads[i].leftHtml;
+              spreads[i].rightHtml = cp.about.rightHtml || spreads[i].rightHtml;
+              break;
+            }
+          }
+        }
+        return { ...this.books.book1, spreads };
+      }
 
-function buildDots() {
-  dotsContainer.innerHTML = '';
-  for (let i = 1; i <= totalSpreads; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 1 ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(dot);
+      const book = this.books[this.currentBook] || this.books.book1;
+      const projectName = (book.projectName || book.title).toLowerCase();
+      const projectMatch = this.websites.find(site => site.name.toLowerCase() === projectName);
+      const projectLine = `
+          <p class="body-text"><strong>Project:</strong> ${book.projectName || book.title}</p>
+        `;
+      const projectDescriptions = {
+        'ajax project': 'Built with asynchronous request handling, this project demonstrates dynamic data loading and UI updates through AJAX calls.',
+        'async project': 'A hands-on exploration of asynchronous control flow, this site shows how promises and callbacks keep interfaces responsive.',
+        'rps project': 'A rock-paper-scissors game project that highlights interactive gameplay logic and responsive user interactions.',
+        'street fighter project': 'A game-themed website showcasing character selection, score tracking, and arcade-style user interface design.',
+        'njit project': 'A campus-focused showcase combining layout, branding, and student-centered content into a polished web experience.',
+        'woplinger project': 'A creative project that emphasizes visual hierarchy, content organization, and engaging styling for a portfolio presentation.'
+      };
+      const projectDescription = projectDescriptions[projectName] || 'This project highlights core web design and interactivity skills, combining thoughtful layout with practical functionality.';
+      const rightContent = createProjectModalHtml(projectMatch);
+      const aboutPage = {
+        leftHtml: `
+          <div class="chapter-label">INTRODUCTION</div>
+          <h2 class="chapter-title">About<br>the Project</h2>
+          <p class="chapter-quote">"A closer look at the project behind this book and the story it represents."</p>
+          <hr class="divider">
+          ${projectLine}
+          <p class="body-text">${projectDescription}</p>
+        `,
+        rightHtml: rightContent
+      };
+
+      return {
+        ...book,
+        tocItems: [{ target: 2, num: '01', chapter: 'About the Project', page: 'p. 2' }],
+        spreads: [{ leftClass: 'about-left', rightClass: 'about-right project-detail-page', leftHtml: aboutPage.leftHtml, rightHtml: aboutPage.rightHtml }]
+      };
+    },
+    currentSpread() {
+      return this.currentBookData.spreads[this.current - 1] || { leftClass: '', rightClass: '', leftHtml: '', rightHtml: '' };
+    },
+    totalSpreads() {
+      return this.currentBookData.spreads.length;
+    }
+  },
+  methods: {
+    // (removed getBook1TocTargets - reverting to simpler behaviour)
+    openBook(bookId) {
+      this.currentBook = bookId;
+      this.viewerOpen = true;
+      // If opening book1, jump directly to the About spread so content is visible
+      if (bookId === 'book1') {
+        const spreads = this.book1Spreads;
+        let aboutIndex = 1; // fallback
+        for (let i = 0; i < spreads.length; i++) {
+          const left = (spreads[i].leftHtml || '').toLowerCase();
+          const right = (spreads[i].rightHtml || '').toLowerCase();
+          if (left.includes('about the author') || left.includes('about me') || left.includes('introduction')) {
+            aboutIndex = i + 1;
+            break;
+          }
+        }
+        this.current = aboutIndex;
+      } else {
+        this.current = 1;
+      }
+    },
+    backToCover() {
+      this.viewerOpen = false;
+    },
+    prevSpread() {
+      if (this.current > 1) {
+        this.current -= 1;
+      }
+    },
+    nextSpread() {
+      if (this.current < this.totalSpreads) {
+        this.current += 1;
+      }
+    },
+    goTo(index) {
+      if (index < 1 || index > this.totalSpreads) return;
+      this.current = index;
+    },
+    // (removed setupTocClickHandlers - reverting to original behaviour)
+    loadWebsites() {
+      fetch('json.json')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && Array.isArray(data.websites)) {
+            this.websites = data.websites;
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to load json.json', error);
+        });
+    }
+  },
+  mounted() {
+    this.loadWebsites();
   }
-}
-
-bookCoverButtons.forEach(card => {
-  card.addEventListener('click', () => {
-    const bookId = card.dataset.book;
-    if (!bookId) return;
-    currentBook = bookId;
-    renderBook(bookId);
-  });
 });
 
-function updateCarousel() {
-  if (!bookTrack) return;
-  carouselIndex = Math.max(0, Math.min(1, carouselIndex));
-  bookTrack.style.transform = `translateX(-${carouselIndex * 50}%)`;
-  if (carouselPrevBtn) carouselPrevBtn.disabled = carouselIndex === 0;
-  if (carouselNextBtn) carouselNextBtn.disabled = carouselIndex === 1;
-}
-
-if (carouselPrevBtn) {
-  carouselPrevBtn.addEventListener('click', () => {
-    carouselIndex = Math.max(0, carouselIndex - 1);
-    updateCarousel();
-  });
-}
-
-if (carouselNextBtn) {
-  carouselNextBtn.addEventListener('click', () => {
-    carouselIndex = Math.min(1, carouselIndex + 1);
-    updateCarousel();
-  });
-}
-
-backBtn.addEventListener('click', () => {
-  bookViewer.classList.add('hidden');
-  coverScreen.classList.remove('hidden');
-});
-
-prevBtn.addEventListener('click', () => goTo(current - 1));
-nextBtn.addEventListener('click', () => goTo(current + 1));
-
-function goTo(n) {
-  if (n < 1 || n > totalSpreads) return;
-  const currentSpread = document.querySelector(`.spread[data-spread="${current}"]`);
-  if (currentSpread) currentSpread.classList.add('hidden');
-  current = n;
-  const nextSpread = document.querySelector(`.spread[data-spread="${current}"]`);
-  if (nextSpread) nextSpread.classList.remove('hidden');
-  updateUI();
-}
-
-function updateUI() {
-  spreadLabel.textContent = `Spread ${current} of ${totalSpreads}`;
-  prevBtn.disabled = current === 1;
-  nextBtn.disabled = current === totalSpreads;
-  document.querySelectorAll('.dot').forEach((dot, i) => {
-    dot.classList.toggle('active', i + 1 === current);
-  });
-}
-
-function init() {
-  buildDots();
-  updateUI();
-  updateCarousel();
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', e => {
-  if (bookViewer.classList.contains('hidden')) return;
-  if (e.key === 'ArrowRight') goTo(current + 1);
-  if (e.key === 'ArrowLeft') goTo(current - 1);
-});
-
-init();
+app.mount('#app');

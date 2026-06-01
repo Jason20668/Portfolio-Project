@@ -321,7 +321,56 @@ html, body {
 /* ===== ABOUT PAGE ===== */
 .about-left  { display: flex; flex-direction: column; gap: clamp(12px, 2vh, 24px); }
 .about-right { display: flex; flex-direction: column; gap: clamp(14px, 2.5vh, 28px); padding-top: clamp(18px, 3vh, 48px); }
-
+.page-right.full-image-page {
+  padding: clamp(12px, 2vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-right.full-image-page {
+  padding: 0;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-right.full-image-page .photo-placeholder.square {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+.about-right.full-image-page .photo-placeholder.square img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+.page-right.project-detail-page {
+  padding: clamp(18px, 2.8vw, 42px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-right.project-detail-page {
+  padding: 0;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-detail-card {
+  width: min(100%, 34rem);
+}
+.project-detail-card .project-card {
+  width: 100%;
+}
 /* ===== CHAPTER PAGES ===== */
 .chapter-label {
   font-size: clamp(9px, 0.72vw, 12px); letter-spacing: 3px; color: #c0392b; margin-bottom: 4px;
@@ -336,6 +385,44 @@ html, body {
 .divider   { border: none; border-top: 1px solid #ddd; margin: 4px 0 10px; }
 .hint-text { font-size: clamp(11px, 0.9vw, 15px); color: #999; margin-top: 4px; }
 .body-text { font-size: clamp(12px, 1.1vw, 17px); color: #333; line-height: 1.75; }
+.ripped-page {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  background: #f4ece4;
+  border: 1px solid #d1c3b3;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+.ripped-page::before,
+.ripped-page::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 24px;
+  background: linear-gradient(135deg, transparent 25%, rgba(0,0,0,0.08) 50%, transparent 75%);
+  transform: rotate(-3deg);
+}
+.ripped-page::after {
+  top: auto;
+  bottom: -12px;
+  transform: rotate(3deg);
+}
+.ripped-page-text {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.1;
+  color: #5c4734;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
 /* ===== TAGS ===== */
 .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; }
@@ -363,12 +450,48 @@ html, body {
 .project-img {
   background: #d8cfc4; color: #a09080; font-size: clamp(11px, 1vw, 15px);
   display: flex; align-items: center; justify-content: center; flex: 1; min-height: 0;
+  overflow: hidden;
+}
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 .project-info {
   padding: clamp(6px, 0.9vh, 12px) clamp(8px, 1vw, 14px);
   font-size: clamp(11px, 1vw, 15px); color: #222; line-height: 1.5; flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+}
+.project-info strong {
+  display: block;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
 }
 .project-info span { color: #888; font-size: clamp(10px, 0.85vw, 13px); }
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 0.85rem 1rem;
+  background: #2a9d56;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: clamp(12px, 1vw, 14px);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.project-button:hover {
+  background: #24874b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(42, 157, 86, 0.16);
+}
 .project-grid {
   display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
   gap: clamp(8px, 1.2vh, 18px); width: 100%; height: 100%;
