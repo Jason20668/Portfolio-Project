@@ -8,7 +8,7 @@ function createTagHtml(tags) {
 
 function createTocItems(items) {
   return items.map(item => `
-      <li data-target="${item.target}">
+      <li data-target="${item.target}" onclick="window.vueApp.goTo(${item.target})">
         <span class="toc-num">${item.num}</span>
         <span class="toc-chapter">${item.chapter}</span>
         <span class="toc-dots"></span>
@@ -199,20 +199,23 @@ const books = {
           <div class="chapter-label">CHAPTER 05</div>
           <h2 class="chapter-title">Reflection</h2>
           <hr class="divider">
+          <p class="body-text">I have truly enjoyed my time in the Web Design Pathway Program. Learning how to code has been an incredible journey that has challenged me to think creatively and problem-solve in new ways. The skills I've developed and the projects I've built have given me confidence in my abilities as a developer.</p>
         `,
         rightHtml: ``
       },
       {
         leftClass: 'chapter-left',
-        rightClass: 'prose-right',
+        rightClass: 'about-right',
         leftHtml: `
           <div class="chapter-label">CHAPTER 06</div>
           <h2 class="chapter-title">Future<br>Plans</h2>
           <hr class="divider">
+          <p class="body-text">I am excited to pursue my passion for technology and security by attending Rochester Institute of Technology, where I plan to study Cybersecurity. This next chapter will allow me to deepen my technical knowledge and contribute to making the digital world safer.</p>
         `,
         rightHtml: `
-          <div class="photo-placeholder wide">Your photo here</div>
-          <p class="body-text">Your future plans text — goals, aspirations, where you see your career heading and what excites you about what's ahead.</p>
+          <div class="photo-placeholder square" style="padding:0;">
+            <img src="imgs/Jason2.jpeg" alt="Jason Bach" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
         `
       }
     ],
@@ -251,7 +254,7 @@ const books = {
     spreads: []
   },
   book5: {
-    title: 'Street Fighter Project',
+    title: 'SF Project',
     projectName: 'Street Fighter Project',
     subtitle: 'Case Study',
     spreads: []
@@ -304,10 +307,45 @@ const app = Vue.createApp({
         return spreads;
       }, []);
     },
+    dynamicTocItems() {
+      const spreads = this.book1Spreads;
+      const items = [];
+      
+      // About Me is always at spread index 1 (display as page 2)
+      items.push({ target: 2, num: '01', chapter: 'About Me', page: 'p. 2' });
+      
+      let sophomoreAdded = false;
+      let juniorAdded = false;
+      let seniorAdded = false;
+      
+      // Find Sophomore, Junior, Senior, Reflection, and Future Plans
+      for (let i = 2; i < spreads.length; i++) {
+        const leftHtml = (spreads[i].leftHtml || '').toLowerCase();
+        
+        if (!sophomoreAdded && leftHtml.includes('sophomore')) {
+          items.push({ target: i + 1, num: '02', chapter: 'Sophomore Year', page: `p. ${i + 1}` });
+          sophomoreAdded = true;
+        } else if (!juniorAdded && leftHtml.includes('junior')) {
+          items.push({ target: i + 1, num: '03', chapter: 'Junior Year', page: `p. ${i + 1}` });
+          juniorAdded = true;
+        } else if (!seniorAdded && leftHtml.includes('senior')) {
+          items.push({ target: i + 1, num: '04', chapter: 'Senior Year', page: `p. ${i + 1}` });
+          seniorAdded = true;
+        } else if (leftHtml.includes('reflection')) {
+          items.push({ target: i + 1, num: '05', chapter: 'Reflection', page: `p. ${i + 1}` });
+        } else if (leftHtml.includes('future')) {
+          items.push({ target: i + 1, num: '06', chapter: 'Future Plans', page: `p. ${i + 1}` });
+        }
+      }
+      
+      return items;
+    },
     currentBookData() {
       if (this.currentBook === 'book1') {
         const spreads = this.book1Spreads;
         const cp = (this.books.book1 && this.books.book1.customPages) ? this.books.book1.customPages : null;
+        
+        // Update About page if customPages exist
         if (cp && cp.about) {
           for (let i = 0; i < spreads.length; i++) {
             const left = (spreads[i].leftHtml || '').toLowerCase();
@@ -318,6 +356,18 @@ const app = Vue.createApp({
             }
           }
         }
+        
+        // Update Contents page with correct TOC items
+        if (spreads[0] && spreads[0].rightHtml && spreads[0].rightHtml.includes('toc-list')) {
+          spreads[0].rightHtml = `
+            <div class="toc-nav-label">NAVIGATION</div>
+            <h2 class="toc-heading">Contents</h2>
+            <ol class="toc-list">
+              ${createTocItems(this.dynamicTocItems)}
+            </ol>
+          `;
+        }
+        
         return { ...this.books.book1, spreads };
       }
 
@@ -416,15 +466,7 @@ const app = Vue.createApp({
   },
   mounted() {
     this.loadWebsites();
-    this.$nextTick(() => {
-      document.querySelectorAll('.toc-list li').forEach(li => {
-        li.style.cursor = 'pointer';
-        li.addEventListener('click', () => {
-          const target = parseInt(li.dataset.target, 10);
-          this.goTo(target);
-        });
-      });
-    });
+    window.vueApp = this;
   }
 });
 
