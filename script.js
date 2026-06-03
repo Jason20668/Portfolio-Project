@@ -1,3 +1,23 @@
+const flipSound = new Audio('PageFlip.mp3');
+const coughSound = new Audio('Cough.mp3');
+const pipeSound = new Audio('Pipe.mp3');
+
+function playPageFlip() {
+  const flip = flipSound.cloneNode();
+  flip.play();
+
+  const roll = Math.random();
+  if (roll < 0.1) {
+    flip.addEventListener('ended', () => {
+      coughSound.cloneNode().play();
+    });
+  } else if (roll < 0.2) {
+    flip.addEventListener('ended', () => {
+      pipeSound.cloneNode().play();
+    });
+  }
+}
+
 let totalSpreads = 8;
 let current = 1;
 let currentBook = 'book1';
@@ -310,18 +330,16 @@ const app = Vue.createApp({
     dynamicTocItems() {
       const spreads = this.book1Spreads;
       const items = [];
-      
-      // About Me is always at spread index 1 (display as page 2)
+
       items.push({ target: 2, num: '01', chapter: 'About Me', page: 'p. 2' });
-      
+
       let sophomoreAdded = false;
       let juniorAdded = false;
       let seniorAdded = false;
-      
-      // Find Sophomore, Junior, Senior, Reflection, and Future Plans
+
       for (let i = 2; i < spreads.length; i++) {
         const leftHtml = (spreads[i].leftHtml || '').toLowerCase();
-        
+
         if (!sophomoreAdded && leftHtml.includes('sophomore')) {
           items.push({ target: i + 1, num: '02', chapter: 'Sophomore Year', page: `p. ${i + 1}` });
           sophomoreAdded = true;
@@ -337,15 +355,14 @@ const app = Vue.createApp({
           items.push({ target: i + 1, num: '06', chapter: 'Future Plans', page: `p. ${i + 1}` });
         }
       }
-      
+
       return items;
     },
     currentBookData() {
       if (this.currentBook === 'book1') {
         const spreads = this.book1Spreads;
         const cp = (this.books.book1 && this.books.book1.customPages) ? this.books.book1.customPages : null;
-        
-        // Update About page if customPages exist
+
         if (cp && cp.about) {
           for (let i = 0; i < spreads.length; i++) {
             const left = (spreads[i].leftHtml || '').toLowerCase();
@@ -356,8 +373,7 @@ const app = Vue.createApp({
             }
           }
         }
-        
-        // Update Contents page with correct TOC items
+
         if (spreads[0] && spreads[0].rightHtml && spreads[0].rightHtml.includes('toc-list')) {
           spreads[0].rightHtml = `
             <div class="toc-nav-label">NAVIGATION</div>
@@ -367,7 +383,7 @@ const app = Vue.createApp({
             </ol>
           `;
         }
-        
+
         return { ...this.books.book1, spreads };
       }
 
@@ -446,13 +462,20 @@ const app = Vue.createApp({
       this.viewerOpen = false;
     },
     prevSpread() {
-      if (this.current > 1) this.current -= 1;
+      if (this.current > 1) {
+        playPageFlip();
+        this.current -= 1;
+      }
     },
     nextSpread() {
-      if (this.current < this.totalSpreads) this.current += 1;
+      if (this.current < this.totalSpreads) {
+        playPageFlip();
+        this.current += 1;
+      }
     },
     goTo(index) {
       if (index < 1 || index > this.totalSpreads) return;
+      playPageFlip();
       this.current = index;
     },
     loadWebsites() {

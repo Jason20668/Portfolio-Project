@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio — A Design Chronicle</title>
+  <link rel="icon" type="image/png" href="imgs/Fav_Book.png">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=EB+Garamond:ital@0;1&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
   <div id="app">
     <!-- COVER SCREEN -->
@@ -14,12 +19,7 @@
       <div class="book-gallery">
         <p class="gallery-cta">CLICK A BOOK TO OPEN</p>
         <div class="books-row books-row--top">
-          <div
-            class="book-cover"
-            v-for="book in topBooks"
-            :key="book.id"
-            @click="openBook(book.id)"
-          >
+          <div class="book-cover" v-for="book in topBooks" :key="book.id" @click="openBook(book.id)">
             <div class="cover-inner">
               <div class="cover-diamond">✦</div>
               <h1 class="cover-title">{{ book.title }}</h1>
@@ -29,12 +29,7 @@
         </div><!-- end books-row -->
 
         <div class="books-row books-row--bottom">
-          <div
-            class="book-cover"
-            v-for="book in bottomBooks"
-            :key="book.id"
-            @click="openBook(book.id)"
-          >
+          <div class="book-cover" v-for="book in bottomBooks" :key="book.id" @click="openBook(book.id)">
             <div class="cover-inner">
               <div class="cover-diamond">✦</div>
               <h1 class="cover-title">{{ book.title }}</h1>
@@ -67,13 +62,8 @@
         <button class="nav-btn" @click="prevSpread">← Previous</button>
         <div class="spread-indicator">
           <div class="dots" id="dots">
-            <span
-              v-for="n in totalSpreads"
-              :key="n"
-              class="dot"
-              :class="{ active: n === current }"
-              @click="goTo(n)"
-            ></span>
+            <span v-for="n in totalSpreads" :key="n" class="dot" :class="{ active: n === current }"
+              @click="goTo(n)"></span>
           </div>
           <span class="spread-label">Spread {{ current }} of {{ totalSpreads }}</span>
         </div>
@@ -85,4 +75,5 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

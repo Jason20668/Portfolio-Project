@@ -19,12 +19,36 @@ html, body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  animation: float 3.5s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-14px); }
+/* ===== FLOAT ANIMATIONS ===== */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-14px) rotate(0.4deg); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-9px) rotate(-0.3deg); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(0.6deg); }
+}
+@keyframes float4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-11px) rotate(-0.5deg); }
+}
+@keyframes float5 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-16px) rotate(0.2deg); }
+}
+@keyframes float6 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-7px) rotate(-0.4deg); }
+}
+@keyframes float7 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-20px) rotate(0.5deg); }
 }
 
 /* ===== GALLERY ===== */
@@ -60,57 +84,63 @@ html, body {
   border-radius: 3px 10px 10px 3px;
   cursor: pointer;
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* fallback color so books are always visible */
   background: #7a7a7a;
   box-shadow: -6px 0 0 #444, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Top row: books 1–3 */
+/* Assign individual float animations to each book in each row */
 .books-row--top .book-cover:nth-child(1) {
   background: linear-gradient(180deg, #c0392b 0%, #962d22 100%);
   box-shadow: -6px 0 0 #962d22, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float1 3.2s ease-in-out infinite;
 }
 .books-row--top .book-cover:nth-child(2) {
   background: linear-gradient(180deg, #1a6fa8 0%, #0f4c75 100%);
   box-shadow: -6px 0 0 #0f4c75, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float2 4.1s ease-in-out infinite 0.6s;
 }
 .books-row--top .book-cover:nth-child(3) {
   background: linear-gradient(180deg, #7d3c98 0%, #512e6f 100%);
   box-shadow: -6px 0 0 #512e6f, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float3 3.7s ease-in-out infinite 1.2s;
 }
 
-/* Bottom row: books 4–7 */
 .books-row--bottom .book-cover:nth-child(1) {
   background: linear-gradient(180deg, #1e8449 0%, #145a32 100%);
   box-shadow: -6px 0 0 #145a32, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float4 4.4s ease-in-out infinite 0.3s;
 }
 .books-row--bottom .book-cover:nth-child(2) {
   background: linear-gradient(180deg, #ca6f1e 0%, #935116 100%);
   box-shadow: -6px 0 0 #935116, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float5 3.5s ease-in-out infinite 1.8s;
 }
 .books-row--bottom .book-cover:nth-child(3) {
   background: linear-gradient(180deg, #148f77 0%, #0e6655 100%);
   box-shadow: -6px 0 0 #0e6655, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float6 5.0s ease-in-out infinite 0.9s;
 }
 .books-row--bottom .book-cover:nth-child(4) {
   background: linear-gradient(180deg, #2e4057 0%, #1a2535 100%);
   box-shadow: -6px 0 0 #1a2535, 0 10px 40px rgba(0,0,0,0.7),
     inset 0 0 0 2px rgba(255,255,255,0.08), inset 8px 0 16px rgba(0,0,0,0.25);
+  animation: float7 3.9s ease-in-out infinite 2.4s;
 }
 
 .book-cover:hover {
   transform: scale(1.06) translateY(-6px);
+  animation-play-state: paused;
   box-shadow:
     -6px 0 0 rgba(0,0,0,0.4),
     0 24px 60px rgba(0,0,0,0.85),
